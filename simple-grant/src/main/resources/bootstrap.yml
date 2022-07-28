@@ -1,0 +1,26 @@
+server:
+  port: 1000
+
+spring:
+  application:
+    name: @artifactId@
+  main:
+    allow-bean-definition-overriding: true
+  # 配置中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        shared-configs:
+          - application.${spring.cloud.nacos.config.file-extension}
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

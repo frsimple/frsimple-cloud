@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    org.simple.cache.config.RedisConfig,\
+    org.simple.cache.config.RedisListenerConfig

@@ -1,0 +1,10 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.simple.security.config.ResouceServerConfig,\
+  org.simple.security.config.TokenConfig,\
+  org.simple.security.filter.AuthenticationFilter,\
+  org.simple.security.interceptor.FeignInterceptor,\
+  org.simple.security.aspect.SimpleLogAsp,\
+  org.simple.security.listener.EventHandleListener,\
+  org.simple.security.handler.CustomOAuth2AuthenticationEntryPoint,\
+  org.simple.security.config.LocalDateTimeConfig,\
+  org.simple.security.config.CustomizationBean
