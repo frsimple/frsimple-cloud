@@ -7,9 +7,11 @@
 [vue3](https://gitee.com/frsimple/view)
 
 
-#### frimsple中后台框架交流群（初始化脚本在群共享文件）
+#### frimsple中后台框架交流群
 
 879870754
+
+ **群共享文件中提供初始化脚本和docker生产部署方案** 
 
 #### 演示地址
 
