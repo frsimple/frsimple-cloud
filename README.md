@@ -72,4 +72,23 @@ nacos版本： 2.x.x
 
   依次启动服务 
   RouteApp,GrantApp,CenterApp
-### 标题
+
+
+#### 目录结构
+```shell
+│
+├─ simple-base     //框架基础模块
+│ │ ├─ simple-cache        //redis缓存
+│ │ ├─ simple-common       //公共模块(短信发送，邮件发送，文件存储工具类等)
+│ │ ├─ simple-datasource   //mybatis-plus持久层，数据池，动态数据源
+│ │ ├─ simple-security     //spring security公共模块(所有微服务必须依赖)
+│
+├─ simple-center   //中台服务模块
+│
+├─ simple-grant    //oauth2.0授权认证模块 
+│
+├─ simple-route    //gateway网关模块 
+│
+├─ simple-plan     //二次开发demo模块
+│
+```
