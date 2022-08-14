@@ -66,8 +66,8 @@ public class DictController {
     }
 
     @GetMapping("vals/{code}")
-    @SimpleLog("查询字典项")
-    @PreAuthorize("hasAnyAuthority('system:dict:query')")
+    //@SimpleLog("查询字典项")
+    //@PreAuthorize("hasAnyAuthority('system:dict:query')")
     public CommonResult listValues1(@PathVariable("code") String code) {
         Dictionary dictionary = new Dictionary();
         dictionary.setCode(code);
