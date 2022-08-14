@@ -1,0 +1,17 @@
+package ${package}.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import ${package}.entity.${className};
+
+/**
+ * @Copyright: ${company} <br/>
+ * @Desc:  <br/>
+ * @Date: ${datetime} <br/>
+ * @Author: ${author} <br/>
+ */
+
+
+public interface ${className}Mapper
+        extends BaseMapper<${className}> {
+
+}

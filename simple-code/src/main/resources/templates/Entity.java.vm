@@ -1,0 +1,34 @@
+package ${package}.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+
+/**
+ * @Copyright: ${company} <br/>
+ * @Desc: ${comments}实体 <br/>
+ * @Date: ${datetime} <br/>
+ * @Author: ${author} <br/>
+ */
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName(value = "${tableName}")
+public class ${className} implements Serializable{
+private static final long serialVersionUID=1L;
+
+#foreach ($column in $columns)
+private $column.attrType $column.attrname;
+
+#end
+
+}
