@@ -91,4 +91,6 @@ nacos版本： 2.x.x
 │
 ├─ simple-plan     //二次开发demo模块
 │
+├─ simple-code     //代码生成模块
+│
 ```
