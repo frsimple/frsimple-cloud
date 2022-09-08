@@ -7,9 +7,9 @@
 [vue3](https://gitee.com/frsimple/view)
 
 
-#### frimsple中后台框架交流群
+#### frimsple中后台框架交流微信群 **_(获取初始化脚本)_** 
 
-879870754
+![输入图片说明](https://frsimple.cn/_nuxt/11662564543_.pic.34eebea0.jpg)
 
  **群共享文件中提供初始化脚本和docker生产部署方案** 
 
