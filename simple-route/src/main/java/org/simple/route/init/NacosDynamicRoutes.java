@@ -55,7 +55,6 @@ public class NacosDynamicRoutes {
                 }
             });
         } catch (NacosException e) {
-            log.error("加载路由出错：{}", e.getErrMsg());
         }
     }
 
@@ -66,7 +65,6 @@ public class NacosDynamicRoutes {
         Yaml yaml = new Yaml();
         GatewayRouteList gatewayRouteList = yaml.loadAs(content,GatewayRouteList.class);
         gatewayRouteList.getRoutes().forEach(route -> {
-            log.info("加载路由：{},{}", route.getId(), route);
             routeDefinitionWriter.save(Mono.just(route)).subscribe();
         });
     }
