@@ -82,6 +82,7 @@ nacos版本： 2.x.x
 │ │ ├─ simple-common       //公共模块(短信发送，邮件发送，文件存储工具类等)
 │ │ ├─ simple-datasource   //mybatis-plus持久层，数据池，动态数据源
 │ │ ├─ simple-security     //spring security公共模块(所有微服务必须依赖)
+│ │ ├─ simple-xxljob     //分布式任务调度(要用到任务调度的必须依赖)
 │
 ├─ simple-center   //中台服务模块
 │
@@ -92,5 +93,7 @@ nacos版本： 2.x.x
 ├─ simple-plan     //二次开发demo模块
 │
 ├─ simple-code     //代码生成模块
+│
+├─ simple-job     //分布式任务调度
 │
 ```
