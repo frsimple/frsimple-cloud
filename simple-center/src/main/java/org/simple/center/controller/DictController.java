@@ -1,6 +1,8 @@
 package org.simple.center.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
@@ -10,6 +12,7 @@ import org.simple.center.service.DictionaryService;
 import org.simple.common.utils.CommonResult;
 import org.simple.common.utils.RedomUtil;
 import org.simple.security.annotation.SimpleLog;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,8 @@ import java.util.List;
 public class DictController {
 
     private final DictionaryService dictionaryService;
+
+    private final RedisTemplate redisTemplate;
 
 
     @GetMapping("list")
@@ -59,20 +64,34 @@ public class DictController {
     @SimpleLog("查询字典项")
     @PreAuthorize("hasAnyAuthority('system:dict:query')")
     public CommonResult listVlues(@RequestParam("code") String code) {
+        //先从缓存中拿
+        Object o = redisTemplate.opsForValue().get(code);
+        if(o != null){
+            List array =  (List)o;
+            return CommonResult.success(array);
+        }
         Dictionary dictionary = new Dictionary();
         dictionary.setCode(code);
-        return CommonResult.success(dictionaryService.list(
-                Wrappers.query(dictionary).notIn("value", "#")));
+        List<Dictionary> dists =  dictionaryService.list(
+                Wrappers.query(dictionary).notIn("value", "#"));
+        return CommonResult.success(dists);
     }
 
     @GetMapping("vals/{code}")
-    //@SimpleLog("查询字典项")
-    //@PreAuthorize("hasAnyAuthority('system:dict:query')")
+    @SimpleLog("查询字典项")
+    @PreAuthorize("hasAnyAuthority('system:dict:query')")
     public CommonResult listValues1(@PathVariable("code") String code) {
+        //先从缓存中拿
+        Object o = redisTemplate.opsForValue().get(code);
+        if(o != null){
+            List array =  (List)o;
+            return CommonResult.success(array);
+        }
         Dictionary dictionary = new Dictionary();
         dictionary.setCode(code);
-        return CommonResult.success(dictionaryService.list(
-                Wrappers.query(dictionary).notIn("value", "#")));
+        List<Dictionary> dists =  dictionaryService.list(
+                Wrappers.query(dictionary).notIn("value", "#"));
+        return CommonResult.success(dists);
     }
 
     @PostMapping("addDict")
@@ -126,6 +145,36 @@ public class DictController {
             dictionaryService.removeById(id);
         }
         return CommonResult.successNodata("删除成功");
+    }
+
+    @GetMapping("refDictCache")
+    @SimpleLog("刷新字段缓存")
+    @PreAuthorize("hasAnyAuthority('system:dict:query')")
+    public CommonResult refDictCache( ) {
+        Dictionary dictionary = new Dictionary();
+        dictionary.setValue("#");
+        List<Dictionary> dictionaryList = dictionaryService.list(Wrappers.query(dictionary));
+        if (dictionaryList.size() != 0) {
+            for (Dictionary item : dictionaryList) {
+                Dictionary d = new Dictionary();
+                d.setCode(item.getCode());
+                List<Dictionary> dicts =
+                        dictionaryService.list(Wrappers.query(d).notIn("value", "#"));
+                JSONArray array = new JSONArray();
+                if (dicts.size() != 0) {
+                    for (Dictionary item1 : dicts) {
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("value", item1.getValue());
+                        jsonObject.put("id", item1.getId());
+                        jsonObject.put("label", item1.getLabel());
+                        jsonObject.put("code", item1.getCode());
+                        array.add(jsonObject);
+                    }
+                }
+                redisTemplate.opsForValue().set(item.getCode(),array);
+            }
+        }
+        return CommonResult.success("刷新完成!");
     }
 
 
