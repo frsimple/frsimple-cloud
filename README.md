@@ -1,3 +1,5 @@
+#### [SpringBoot 单体服务中后台解决方案传送门](https://gitee.com/frsimple/springboot)
+
 #### 官网地址
 
 [官网地址](http://frsimple.cn)
