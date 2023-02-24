@@ -23,7 +23,10 @@
 
 
 
- **群共享文件中提供初始化脚本和docker生产部署方案** 
+#### 部分截图
+
+![输入图片说明](https://pengpengyu-test.oss-cn-zhangjiakou.aliyuncs.com/image/v5.png)
+
 
 #### 演示地址
 
