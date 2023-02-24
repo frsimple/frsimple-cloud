@@ -45,9 +45,6 @@
 
 [vue3版本](http://vue.frsimple.cn)
 
-[react版本(开发中)](http://react.frsimple.cn)
-
-
 #### 软件架构
 
 
