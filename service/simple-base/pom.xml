@@ -17,6 +17,7 @@
         <module>simple-datasource</module>
         <module>simple-cache</module>
         <module>simple-security</module>
+        <module>simple-xxljob</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
